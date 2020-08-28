@@ -10,40 +10,39 @@ import { SharedService } from './shared.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   genders = ['male', 'female'];
-  loginForm : FormGroup;
-  disableFetchButton:true;
-  constructor(private sharedService:SharedService,private authenticationService: AuthenticationService,private route:ActivatedRoute,private router:Router){
-
+  loginForm: FormGroup;
+  private isButtonVisible = true;
+  accessToken:String;
+  constructor(private sharedService: SharedService, private authenticationService: AuthenticationService, private route: ActivatedRoute, private router: Router) {
+    
   }
 
-  ngOnInit(){
+  ngOnInit() {
+    
     this.loginForm = new FormGroup({
-      'username': new FormControl(null,[Validators.required]),
-      'password': new FormControl(null,[Validators.required])
-  });
-}
+      'username': new FormControl(null, [Validators.required]),
+      'password': new FormControl(null, [Validators.required])
+    });
+    this.accessToken = this.sharedService.getAccessToken();
+  }
 
-getDisableStatus(){
-  return this.disableFetchButton;}
-onClick(){
-  this.disableFetchButton = true;
-}
-onSubmit(){
-  this.authenticationService.login(this.loginForm.get('username').value, this.loginForm.get('password').value)
-            .subscribe(
-                data => {
-                  console.log("data"+JSON.stringify(data));
-                  console.log("this.route")
+ 
+  onSubmit() {
+    this.authenticationService.login(this.loginForm.get('username').value, this.loginForm.get('password').value)
+      .subscribe(
+        data => {
+          console.log("data" + JSON.stringify(data));
+          console.log("this.route")
 
-                  this.sharedService.setAccessToken(data['token']);
-                  this.router.navigate(['/powerbi']);
-                },
-                error => {
-                  alert("Invalid Username or Password!!")
-                    // this.alertService.error(error);
-                    // this.loading = false;
-                });
+          this.sharedService.setAccessToken(data['token']);
+          this.router.navigate(['/powerbi']);
+        },
+        error => {
+          alert("Invalid Username or Password!!")
+          // this.alertService.error(error);
+          // this.loading = false;
+        });
   }
 }

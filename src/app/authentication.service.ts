@@ -25,7 +25,7 @@ export class AuthenticationService {
              'Content-Type':  'application/json'
             })
           };
-        return this.http.post<any>(`http://localhost:8082/getAccessToken`, JSON.stringify({
+        return this.http.post<any>(`https://powerbidemo-4.azurewebsites.net/getAccessToken`, JSON.stringify({
             username: username,
             password: password,
           }),httpOptions);

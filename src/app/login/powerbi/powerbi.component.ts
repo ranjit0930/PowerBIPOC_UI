@@ -36,4 +36,9 @@ export class PowerbiComponent implements OnInit {
     // )
   }
 
+  onLogout(){
+    this.sharedService.accessToken = null;
+    this.router.navigate(["./loginUser"]);
+  }
+
 }

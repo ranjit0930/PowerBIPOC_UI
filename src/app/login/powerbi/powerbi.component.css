@@ -2,3 +2,9 @@
     width: 100%;
     height: calc(100vh - 100px);
   }
+
+  div {
+    height: 500px;
+    width: 100%;
+    /* background-color: powderblue; */
+  }

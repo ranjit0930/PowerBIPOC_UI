@@ -1,9 +1,13 @@
-<div style="text-align:center" class="reports-iframe">
+<!-- <div style="text-align:center" class="reports-iframe"> -->
+  <div class="row" style="text-align:right">
+    <button class="btn btn-danger" type="submit" (click)="onLogout()">SignOut>>
+    </button>
     <powerbi-component
       type="report"
       id="05f6b070-4bd7-4e75-b206-a644de02acef"
       embedUrl="https://app.powerbi.com/reportEmbed?reportId=05f6b070-4bd7-4e75-b206-a644de02acef&groupId=0d2332cb-384d-4cfc-91fc-1ca38ea18596"
       tokenType="aad"
       [accessToken]="getAccessToken()">
-    </powerbi-component>
+  </powerbi-component>
   </div>
+<!-- </div> -->
