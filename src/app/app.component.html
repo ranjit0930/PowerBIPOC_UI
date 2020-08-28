@@ -27,9 +27,14 @@
  
 </div> -->
 <div class="container">
-  <div class="row">
-  <button class="btn btn-primary" type="submit" routerLink = 'login'>SignIn</button>
+  <div class="row" *ngIf="this.isButtonVisible" (click)="this.isButtonVisible = false">
+  <button class="btn btn-primary" type="submit" routerLink = 'loginUser'>SignIn
+  </button>
 </div>
+  <div class="row" *ngIf="!this.isButtonVisible && this.accessToken==null">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<router-outlet></router-outlet>
+
+<!-- <app-login-user></app-login-user> -->
 <!-- <app-login></app-login> -->
